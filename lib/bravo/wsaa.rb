@@ -21,7 +21,7 @@ module Bravo
     #
     # rubocop:disable Metrics/MethodLength
     def self.build_tra
-      now = (Time.now) - 120
+      now = Time.now.utc - 120 + Time.zone_offset("-03:00")
       @from = now.strftime('%FT%T%:z')
       @to   = (now + ((12 * 60 * 60))).strftime('%FT%T%:z')
       @id   = now.strftime('%s')
