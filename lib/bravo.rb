@@ -44,7 +44,7 @@ module Bravo
   extend self
 
   attr_accessor :cuit, :sale_point, :default_documento, :pkey, :cert, :default_concepto, :default_moneda,
-    :own_iva_cond, :openssl_bin
+    :own_iva_cond, :openssl_bin, :ssl_version
 
   class << self
     # Receiver of the logging configuration options.
@@ -64,6 +64,11 @@ module Bravo
     # Returs the formatted logger options to be used by Savon.
     def logger_options
       logger.logger_options
+    end
+
+    # Specify either :TLSv1 or :SSLv3. Uses :TLSv1 by default.
+    def ssl_options
+      { ssl_version: Bravo.ssl_version || :TLSv1 }
     end
 
     def own_iva_cond=(iva_cond_symbol)

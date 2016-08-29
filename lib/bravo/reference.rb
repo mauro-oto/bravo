@@ -32,6 +32,7 @@ module Bravo
     #
     def self.set_client
       opts = { wsdl: Bravo::AuthData.wsfe_url }.merge! Bravo.logger_options
+      opts.merge! Bravo.ssl_options
       @client = Savon.client(opts)
     end
   end
