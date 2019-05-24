@@ -55,7 +55,7 @@ date_from: #{ date_from.inspect }, date_to: #{ date_to.inspect }, invoice_type: 
     # @return [Float] the sum of both fields, or 0 if the net is 0.
     #
     def total
-      @total = net.zero? ? 0 : net + iva_sum
+      @total = net.zero? ? 0 : (net + iva_sum).round(2)
     end
 
     # Calculates the corresponding iva sum.
